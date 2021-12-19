@@ -15,6 +15,8 @@ class DefaultController extends AbstractController
 {
     protected $urlMagento = "http://rapidg.local/";
 
+    protected $accessToken = "mff8x55yav8vszt0vb56vvvrxbxzobxk";
+
     /**
      * @throws Exception
      * @Route("/", name="index")
@@ -87,8 +89,7 @@ class DefaultController extends AbstractController
 
     private function callAPi($apiUrl)
     {
-        $accessToken = "mff8x55yav8vszt0vb56vvvrxbxzobxk";
-        $setHeaders = array('Content-Type:application/json', 'Authorization:Bearer ' . $accessToken);
+        $setHeaders = array('Content-Type:application/json', 'Authorization:Bearer ' . $this->accessToken);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $apiUrl);

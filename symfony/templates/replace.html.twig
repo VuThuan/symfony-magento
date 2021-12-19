@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {% block javascripts %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    {% block body %}{% endblock %}
+    <h2>Replace Sku</h2>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <form id="replace-form" action="{{ path("action_form") }}" method="post">
+        <div class="form-group">
+            <label for="sku">Sku:</label>
+            <input type="text" class="form-control" id="sku" data-action="{{ path('ajax_search') }}" placeholder="Enter old sku" name="sku" required>
+            <div class="msg-sku"></div>
+        </div>
+        <div class="form-group">
+            <label for="new_sku">New Sku:</label>
+            <input type="text" minlength="2" maxlength="8" data-action="{{ path('ajax_search') }}" class="form-control" id="new_sku" placeholder="Enter new sku" name="new_sku" required>
+            <div class="msg-new-sku"></div>
+        </div>
+        <button type="submit" class="btn btn-default btn-replace">Replace</button>
+    </form>
+</div>
+</body>
+</html>
+

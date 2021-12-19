@@ -48,7 +48,8 @@ git clone https://github.com/VuThuan/symfony-magento.git symfony-magento
 Make sure you set the **Resource Access** for `Magento_Catalog::products`
 - Copy the **Access token** and **Base url Magento** into Symfony settings file located
 ```
-namespace App\Controller\DefaultController
+namespace App\Controller;
+
 class DefaultController extends AbstractController
 {
     protected $urlMagento = "http://magento243.local/";
